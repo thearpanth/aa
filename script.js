@@ -1,34 +1,12 @@
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("nav a");
+const images = document.querySelectorAll(".project-image");
 
-function scrollToSection(event) {
-  event.preventDefault();
-  const href = event.currentTarget.getAttribute("href");
-  const section = document.querySelector(href);
+images.forEach((image) => {
+  image.addEventListener("click", () => {
+    const imageUrl = image.getAttribute("src");
+    const lightbox = document.createElement("div");
+    lightbox.classList.add("lightbox");
 
-  section.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-}
+    const img = document.createElement("img");
+    img.setAttribute("src", imageUrl);
 
-navLinks.forEach((link) => {
-  link.addEventListener("click", scrollToSection);
-});
-
-document.addEventListener("scroll", function () {
-  const currentPosition = window.scrollY + 50;
-  sections.forEach((section) => {
-    if (section.offsetTop <= currentPosition && section.offsetTop + section.offsetHeight > currentPosition) {
-      const id = section.getAttribute("id");
-      navLinks.forEach((link) => {
-        const href = link.getAttribute("href");
-        if (href === `#${id}`) {
-          link.classList.add("active");
-        } else {
-          link.classList.remove("active");
-        }
-      });
-    }
-  });
-});
+    lightbox.appendChild
